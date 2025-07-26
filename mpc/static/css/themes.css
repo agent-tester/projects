@@ -1,0 +1,173 @@
+/* === THEME VARIABLES & COLORS ONLY === */
+
+:root {
+  --font-family: 'Hack', 'Fira Code', 'Roboto Mono', monospace;
+  --border-radius: 4px;
+  --spacing-unit: 8px;
+}
+
+/* === NIGHT THEME === */
+[data-theme="night"] {
+  --bg-color: #282a36;
+  --text-color: #f8f8f2;
+  --header-bg: #21222c;
+  --border-color: #44475a;
+  --accent-color: #50fa7b;
+  --button-bg: #44475a;
+  --button-text: #f8f8f2;
+  --button-hover-bg: #6272a4;
+  --primary-button-bg: #50fa7b;
+  --primary-button-text: #282a36;
+  --primary-button-hover-bg: #62ff8f;
+  --input-bg: #21222c;
+  --input-border: #6272a4;
+  --input-text: #f8f8f2;
+  --input-focus-border: #50fa7b;
+  --panel-bg: #282a36;
+  --dim-text: #6272a4;
+  --danger-bg: #ff5555;
+  --danger-hover-bg: #ff6b6b;
+  --success-bg: #50fa7b;
+  --success-hover-bg: #62ff8f;
+  --persona-color-1: #ff79c6;
+  --persona-color-2: #bd93f9;
+  --persona-color-3: #ffb86c;
+  --persona-color-4: #8be9fd;
+  --persona-color-5: #f1fa8c;
+  --persona-color-6: #50fa7b;
+}
+
+/* === DAY THEME === */
+[data-theme="day"] {
+  --bg-color: #f0f0f0;
+  --text-color: #333333;
+  --header-bg: #ffffff;
+  --border-color: #cccccc;
+  --accent-color: #007bff;
+  --button-bg: #e0e0e0;
+  --button-text: #333333;
+  --button-hover-bg: #d0d0d0;
+  --primary-button-bg: #007bff;
+  --primary-button-text: #ffffff;
+  --primary-button-hover-bg: #0056b3;
+  --input-bg: #ffffff;
+  --input-border: #aaaaaa;
+  --input-text: #333333;
+  --input-focus-border: #007bff;
+  --panel-bg: #f0f0f0;
+  --dim-text: #777777;
+  --danger-bg: #dc3545;
+  --danger-hover-bg: #c82333;
+  --success-bg: #28a745;
+  --success-hover-bg: #218838;
+  --persona-color-1: #E63946;
+  --persona-color-2: #457B9D;
+  --persona-color-3: #A8DADC;
+  --persona-color-4: #F4A261;
+  --persona-color-5: #2A9D8F;
+  --persona-color-6: #B5838D;
+}
+
+/* === NORD THEME === */
+[data-theme="nord"] {
+  --bg-color: #2E3440;
+  --text-color: #ECEFF4;
+  --header-bg: #3B4252;
+  --border-color: #4C566A;
+  --accent-color: #88C0D0;
+  --button-bg: #4C566A;
+  --button-text: #ECEFF4;
+  --button-hover-bg: #5E677B;
+  --primary-button-bg: #88C0D0;
+  --primary-button-text: #2E3440;
+  --primary-button-hover-bg: #81A1C1;
+  --input-bg: #3B4252;
+  --input-border: #4C566A;
+  --input-text: #D8DEE9;
+  --input-focus-border: #88C0D0;
+  --panel-bg: #2E3440;
+  --dim-text: #D8DEE9;
+  --danger-bg: #BF616A;
+  --danger-hover-bg: #D08770;
+  --success-bg: #A3BE8C;
+  --success-hover-bg: #8FBCBB;
+  --persona-color-1: #BF616A;
+  --persona-color-2: #D08770;
+  --persona-color-3: #EBCB8B;
+  --persona-color-4: #A3BE8C;
+  --persona-color-5: #B48EAD;
+  --persona-color-6: #81A1C1;
+}
+
+/* === PERSONA COLOR ASSIGNMENTS === */
+
+/* Persona name colors in sidebar */
+.persona[data-color-index="1"] .persona-name { color: var(--persona-color-1); }
+.persona[data-color-index="2"] .persona-name { color: var(--persona-color-2); }
+.persona[data-color-index="3"] .persona-name { color: var(--persona-color-3); }
+.persona[data-color-index="4"] .persona-name { color: var(--persona-color-4); }
+.persona[data-color-index="5"] .persona-name { color: var(--persona-color-5); }
+.persona[data-color-index="6"] .persona-name { color: var(--persona-color-6); }
+
+/* Message persona badges */
+.message[data-persona-class="persona1"] .message-persona .persona-badge { 
+  background-color: var(--persona-color-1); 
+  color: var(--bg-color); 
+}
+.message[data-persona-class="persona2"] .message-persona .persona-badge { 
+  background-color: var(--persona-color-2); 
+  color: var(--bg-color); 
+}
+.message[data-persona-class="persona3"] .message-persona .persona-badge { 
+  background-color: var(--persona-color-3); 
+  color: var(--bg-color); 
+}
+.message[data-persona-class="persona4"] .message-persona .persona-badge { 
+  background-color: var(--persona-color-4); 
+  color: var(--bg-color); 
+}
+.message[data-persona-class="persona5"] .message-persona .persona-badge { 
+  background-color: var(--persona-color-5); 
+  color: var(--bg-color); 
+}
+.message[data-persona-class="persona6"] .message-persona .persona-badge { 
+  background-color: var(--persona-color-6); 
+  color: var(--bg-color); 
+}
+
+/* Message persona indicators (left border) */
+.message[data-persona-class="persona1"] .persona-indicator { background-color: var(--persona-color-1); }
+.message[data-persona-class="persona2"] .persona-indicator { background-color: var(--persona-color-2); }
+.message[data-persona-class="persona3"] .persona-indicator { background-color: var(--persona-color-3); }
+.message[data-persona-class="persona4"] .persona-indicator { background-color: var(--persona-color-4); }
+.message[data-persona-class="persona5"] .persona-indicator { background-color: var(--persona-color-5); }
+.message[data-persona-class="persona6"] .persona-indicator { background-color: var(--persona-color-6); }
+
+/* Message persona names */
+.message[data-persona-class="persona1"] .message-persona { color: var(--persona-color-1) !important; }
+.message[data-persona-class="persona2"] .message-persona { color: var(--persona-color-2) !important; }
+.message[data-persona-class="persona3"] .message-persona { color: var(--persona-color-3) !important; }
+.message[data-persona-class="persona4"] .message-persona { color: var(--persona-color-4) !important; }
+.message[data-persona-class="persona5"] .message-persona { color: var(--persona-color-5) !important; }
+.message[data-persona-class="persona6"] .message-persona { color: var(--persona-color-6) !important; }
+
+/* === ANIMATIONS === */
+@keyframes rainbow {
+  0% { background-color: #ff0000; }
+  16.66% { background-color: #ff8000; }
+  33.33% { background-color: #ffff00; }
+  50% { background-color: #00ff00; }
+  66.66% { background-color: #0080ff; }
+  83.33% { background-color: #8000ff; }
+  100% { background-color: #ff0000; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(-10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}

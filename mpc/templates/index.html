@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="night">
+<head>
+  <meta charset="UTF-8">
+  <title>MPC</title>
+  <link rel="stylesheet" href="static/css/styles.css">
+  <link rel="stylesheet" href="static/css/themes.css">
+</head>
+<body>
+  <div class="container">
+
+    <!-- Header -->
+    <div class="header">
+      <div class="logo">MULTI-PERSONA CHATBOT</div>
+      <div class="theme-toggle">
+        <select id="themePicker" onchange="changeTheme(this.value)">
+            <option value="night">Night</option>
+            <option value="day">Day</option>
+            <option value="nord">Nord</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="main-content">
+      <!-- Left Column containing conversation and controls -->
+      <div class="left-column">
+        
+        <!-- Conversation Box -->
+        <div class="conversation-box">
+          <div class="box-header">
+            <div>CONVERSATION LOG</div>
+            <div class="conversation-controls">
+              <button class="button button-secondary button-tiny" onclick="saveConversation()" data-tooltip="Save conversation to local storage">SAVE</button>
+              <button class="button button-secondary button-tiny" onclick="loadConversation()" data-tooltip="Load saved conversation">LOAD</button>
+              <button class="button button-secondary button-tiny" onclick="clearConversation()" data-tooltip="Clear current conversation">CLEAR</button>
+            </div>
+          </div>          
+          <div class="terminal-window crt-effect" id="conversation"></div>
+          <div class="status-bar">
+            <div><span class="status-indicator rainbow"></span>PULSE</div>
+            <div id="messageCount">MSGS: <span id="messageCountValue">0</span></div>
+            <div id="characterCount">CHARS: <span id="characterCountValue">0</span></div>
+          </div>
+        </div>
+
+        <!-- Controls Box -->
+        <div class="controls-box">
+          <div class="box-header">CONTROL PANEL</div>
+          
+          <div class="input-group">
+            <div class="input-row">
+              <textarea id="userInput" class="user-input" placeholder="ENTER MESSAGE TO ADD/CHAT OR AUTO CHAT..."></textarea>
+              <div class="input-controls">
+                <select id="respondAsSelect">
+                  <option disabled selected>RESPOND AS</option>
+                </select>
+                <button id="addChatButton" class="button button-primary button-tiny">ADD CHAT</button>
+                <select id="respondToSelect">
+                  <option disabled selected>RESPOND TO</option>
+                </select>
+                <button id="chatButton" class="button button-primary button-tiny">CHAT</button>
+                
+                <!-- Auto controls moved here, below CHAT button -->
+                <div class="auto-controls">
+                  <div class="auto-controls-row">
+                    <label for="turnsInput">EXCHANGES:</label>
+                    <input type="number" id="turnsInput" min="1" max="10" value="1">
+                  </div>
+                  <button id="startAutoConvoButton" class="button button-primary button-tiny">AUTO CHAT</button>
+                  <label class="random-checkbox">
+                    <input type="checkbox" id="randomCheckbox"> RANDOM ORDER
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+
+      <!-- Right Sidebar with Tabs -->
+      <div class="sidebar">
+        <div class="sidebar-tabs">
+          <button class="tab-button active" data-tab="personas">PERSONAS</button>
+          <button class="tab-button" data-tab="context">CONTEXT</button>
+          <button class="tab-button" data-tab="analysis">ANALYSIS</button>
+        </div>
+        
+        <div class="tab-content active" id="personas-tab">
+          <div class="persona-header">
+            <input type="text" id="personaNameInput" class="persona-input" placeholder="ENTER PERSONA NAME">
+            <button class="button button-primary button-tiny" onclick="addPersona()">ADD</button>
+          </div>
+          <div class="persona-list" id="personasContainer">
+            <!-- Persona cards will be added here -->
+          </div>
+        </div>
+        
+        <div class="tab-content" id="context-tab">
+          <div class="context-input">
+            <textarea id="contextInput" placeholder="ENTER SCENARIO CONTEXT..."></textarea>
+            <button id="setContextButton" class="button button-primary button-tiny">SET CONTEXT</button>
+          </div>
+          <div class="context-display">
+            <div class="results-header">
+              <div class="context-label">CURRENT CONTEXT:</div>
+            </div>
+            <div class="results-content">
+              <!-- <div id="currentContext"><em>No context set</em></div> -->
+              <textarea id="currentContext" class="class="analysis-results" readonly><em>No context set</em></textarea>
+            </div>
+          </div>
+          <div class="include-last-controls">
+            <label class="include-last-checkbox">
+              <input type="checkbox" id="includeLastCheckbox">INCLUDE LAST
+            </label>
+            <input type="number" id="includeLastCount" min="1" value="5" placeholder="Number of messages" disabled>
+          </div>
+        </div>
+
+        <div class="tab-content" id="analysis-tab">
+          <div class="analysis-container">
+            
+            <!-- Main Configuration Section -->
+            <div class="analysis-config-panel">
+              <div class="analysis-row">
+                <label class="include-chat-checkbox">
+                  <input type="checkbox" id="includeChatCheckbox" checked> INCLUDE CHAT
+                </label>
+              </div>
+              
+              <!-- Top Row - Persona Selection -->
+              <div class="analysis-row">
+                <label for="analysisPersonaSelect">TARGET:</label>
+                <select id="analysisPersonaSelect" class="analysis-select">
+                  <option value="ALL">ALL PERSONAS</option>
+                </select>
+              </div>
+              
+              <!-- Second Row - Message Range -->
+              <div class="analysis-row range-row">
+                <div class="range-group">
+                  <label for="startRange">FROM:</label>
+                  <input type="number" id="startRange" min="1" value="1" class="range-input">
+                </div>
+                <div class="range-group">
+                  <label for="endRange">TO:</label>
+                  <input type="number" id="endRange" min="1" value="10" class="range-input">
+                </div>
+              </div>
+              
+              <!-- Analysis Prompt Section -->
+              <div class="analysis-prompt-section">
+                <label for="analysisPrompt">ANALYSIS PARAMETERS:</label>
+                <textarea id="analysisPrompt" placeholder="Enter specific analysis instructions or queries..."></textarea>
+              </div>
+              
+              <!-- Control Row -->
+              <div class="analysis-controls-row">
+                <button id="analyzeButton" class="button button-primary">ANALYZE</button>
+              </div>
+            </div>
+            
+            <!-- Results Section -->
+            <div class="analysis-results-panel">
+              <div class="results-header">
+                <div class="results-title">ANALYSIS OUTPUT</div>
+              </div>
+              <div class="results-content">
+                <textarea id="analysisResults" class="analysis-results" readonly></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script src="static/js/script.js"></script>
+
+</body>
+
+<template id="confirm-delete-template">
+  <div class="confirm-delete">
+    <span>CONFIRM DELETION?</span>
+    <button class="yes-btn">YES</button>
+    <button class="no-btn">NO</button>
+  </div>
+</template>
+
+<template id="edit-area-template">
+  <textarea class="edit-area"></textarea>
+  <div class="edit-buttons">
+    <button class="save-btn">SAVE</button>
+    <button class="cancel-btn">CANCEL</button>
+  </div>
+</template>
+
+<template id="edit-marker-template">
+  <span class="edit-marker" style="color: var(--text-dim); font-size: 12px;"> [EDITED]</span>
+</template>
+
+<template id="persona-card-template">
+  <div class="persona">
+    <input type="file" class="avatar-input" accept="image/*" style="display: none;">
+    <button class="avatar-upload-btn" title="Upload Avatar">+</button>
+    <button class="delete">×</button>
+    <div class="persona-name"></div>
+    <textarea class="prompt" placeholder="Define behavioral parameters..."></textarea>
+  </div>
+</template>
+
+</html>

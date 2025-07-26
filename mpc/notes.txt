@@ -1,0 +1,89 @@
+MPC - Multi Persona Chatbot
+===========================
+
+How was this created ?
+I have some basic understanding of python, java + spare time during weekends.
+Inspired by SillyTavern (but i wanted something very very simple).
+Created with the help of ChatGPT, Deepseek, Claude -all non paid -it took months.
+
+My dev system:
+Manjaro + AMD 2700 + RTX 3060 + 32 GB RAM + Python 3.13.5 + LM Studio (with many LLMs) + VSCodium
+
+What does this do ?
+Its kind of playing improv scenarios, where someone gives a context like "you're all stuck in an elevator" 
+or "you're pirates who just found treasure but can't agree how to split it," and players improvise their 
+roles within that situation.
+
+The app allows user to define personas, set a context and trigger some chat between them.
+User can also act as a persona and steer the conversation manually. It uses apis provided 
+by lm studio nd llms from huggingface.
+
+Is this fully functional/secure ?
+No idea. It might work for some case. The personas tend to loose their purpose after some time.
+Security was not considered for development.
+Warning: The "content" from model, context OR the user's manual intervention can steer personas to go NSFW.
+
+Does it require internet ?.
+- To download requirements, lm studio requirements, llms -Yes
+- To chat -No; Unless ur system is connected to internet and lm studio leaks it (which i am not aware).
+
+Is there any similar app ?
+SillyTavern etc. many web apps.
+
+To run this chatbot (with default persona + context)
+====================================================
+- open lm studio. enable server mode. load any model.
+- open terminal from project folder. load python venv. (figure out and install requirements for now)
+- run "python -m app" to start the server
+- open url in browser
+- set context.
+
+Auto chat -Personas will chat with each other according to context
+==================================================================
+- set number of exchanges (default 1)
+- click auto start
+- if you are not happy with the results then edit, delete dialogues; clear and start over.
+- if you are happy with the results, then continue clicking auto start.
+
+Chat as a persona -Allows user to chat as persona to other personas
+===================================================================
+In between conversation if you want to interfere and speak as a persona to
+-- every other persona, select respond as persona, enter message, click add chat, click auto chat.
+-- specific persona, select respond as, to, enter message, click chat.
+
+Analyze Conversations
+====================
+You can analyze the conversations between persona
+
+Others:
+======
+
+We can set model params from ui
+Sherlock Holmes:
+[CREATIVITY:0.3][MAX_LENGTH:300] You are Sherlock Holmes, the world's greatest detective. You are extremely logical, observant, and deductive in your reasoning...
+
+Excited Storyteller Persona:
+[CREATIVITY:0.9][MAX_LENGTH:800] You are an enthusiastic storyteller who loves to elaborate and create vivid narratives...
+
+Very low creativity (0.2)
+Short responses (250 tokens)
+Highly analytical and fact-based
+Minimal decorative language
+
+Very high creativity (0.9)
+Long, detailed responses (1000 tokens)
+Highly imaginative and flowery language
+Extensive use of literary devices
+
+Medium creativity (0.5)
+Moderate response length (500 tokens)
+Balanced between factual and engaging
+Professional, measured communication
+
+
+Enclose private thoughts/actions in square brackets eg: [This is private]
+Other personas CANNOT see content inside brackets
+
+TO DO
+=====
+Integrate this with comfy ui. to generate background pictures as per context --"Visual Essence".
